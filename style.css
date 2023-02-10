@@ -1,0 +1,120 @@
+body {
+    background-color: #ADD8E6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+}
+
+form {
+    background-color: black;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    margin: 100px auto;
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+    position: relative;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea {
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+    border: 1px solid #4CAF50;
+    outline: none;
+}
+
+input[type="email"]:valid {
+    border: 1px solid green;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+textarea {
+    height: 200px;
+    resize: none;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-header p {
+    font-size: 18px;
+    color: #555;
+}
+
+@media (max-width: 600px) {
+    form {
+        width: 100%;
+        padding: 20px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    textarea {
+        font-size: 14px;
+    }
+    .form-header h2 {
+        font-size: 24px;
+    }
+    .form-header p {
+        font-size: 16px;
+    }
+}

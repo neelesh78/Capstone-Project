@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book Review Club</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html"><img src="logo.png" alt="Logo" class="logo"></a>
+    </header>
+
+
+
+    <div class="container mt-5">
+        <h1 class="text-center">Book Review Club</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publication Date</th>
+                    <th>Review</th>
+                    <th>Rating</th>
+                </tr>
+
+            </thead>
+            <form id="update-book-form" style="display: none;">
+                <input type="hidden" id="bookId" name="bookId">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" class="form-control" id="author" name="author">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="publicationDate">Publication Date:</label>
+                    <input type="date" class="form-control" id="publicationDate" name="publicationDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <select class="form-control" id="rating" name="rating" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="review">Review</label>
+                    <textarea class="form-control" id="review" name="review"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Book</button>
+                <button type="button" class="btn btn-secondary" id="cancel-update-button">Cancel</button>
+            </form>
+            </tbody>
+            <tbody id="book-list">
+                <tr>
+                    <td>To Kill a Mockingbird</td>
+                    <td>Harper Lee</td>
+                    <td>July 11, 1960</td>
+                    <td>
+                        A classic novel about prejudice and injustice in a small Southern town. The characters are well-developed and the storyline is engaging. I highly recommend this book.
+                    </td>
+                    <td>5 stars</td>
+                </tr>
+                <tr>
+                    <td>Pride and Prejudice</td>
+                    <td>Jane Austen</td>
+                    <td>January 28, 1813</td>
+                    <td>
+                        A timeless novel about the complexities of love and social status in Regency England. The writing is witty and the characters are memorable. I highly recommend this book.
+                    </td>
+                    <td>5 stars</td>
+                </tr>
+                <tr>
+                    <td>The Great Gatsby</td>
+                    <td>F. Scott Fitzgerald</td>
+                    <td>April 10, 1925</td>
+                    <td>
+                        A timeless novel about the decadence and excess of the Roaring Twenties. The writing is beautiful and the characters are complex. I highly recommend this book.
+                    </td>
+                    <td>4 stars</td>
+                </tr>
+            </tbody>
+
+        </table>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function() {
+            // Show the form when update book button is clicked
+            $('#book-list').on('click', 'a.update-book', function(event) {
+                event.preventDefault();
+                var tr = $(this).closest('tr');
+                $('#bookId').val(tr.data('id'));
+                $('#title').val(tr.data('title'));
+                $('#author').val(tr.data('author'));
+                $('#publicationDate').val(tr.data('publication-date'));
+                $('#email').val(tr.data('email'));
+                $('#rating').val(tr.data('rating'));
+                $('#review').val(tr.data('review'));
+                $('#update-book-form').show();
+            });
+
+            // Hide the form when cancel button is clicked
+            $('#cancel-update-button').click(function() {
+                $('#update-book-form').hide();
+            });
+
+            // Submit the form data
+            $('#update-book-form').submit(function(event) {
+                event.preventDefault();
+
+                // Check if title and author are filled
+                if (!$('#title').val() || !$('#author').val()) {
+                    alert('Please fill in both title and author fields!');
+                    return;
+                }
+
+                // Add the updated book data to the table
+                var tr = $('#book-list tr[data-id="' + $('#bookId').val() + '"]');
+                tr.data('title', $('#title').val());
+                tr.data('author', $('#author').val());
+                tr.data('publication-date', $('#publicationDate').val());
+                tr.data('email', $('#email').val());
+                tr.data('rating', $('#rating').val());
+                tr.data('review', $('#review').val());
+                tr.find('.title').text($('#title').val());
+                tr.find('.author').text($('#author').val());
+                tr.find('.publication-date').text($('#publicationDate').val());
+                tr.find('.email').text($('#email').val());
+                tr.find('.rating').text($('#rating').val());
+                tr.find('.review').text($('#review').val());
+                $('#update-book-form').hide();
+            });
+        });
+    </script>
+
+</body>
+
+</html>
